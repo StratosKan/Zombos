@@ -1,0 +1,170 @@
+BEGIN OF LOG, STARDATE -304129.24632166413, LogShip Zombo:
+====== Log ======
+11-11-18 - Stratos K
+Time: 5h
+Added: Player Input Manager && Player Controler (using physics) based on Jimmos' playerControllerScript.
+=================
+12-11-18 - Stratos K
+Time: 2h
+Added: The first Zombo AI movement. It's only wandering arround and looking for player in this version.
+=================
+14-11-18 - Jim P
+Time: n/a
+Added: Current scene based on Themis' scene, has functional Player <Player_CC3> with working CharacterControlled movement. InputManager on <Mothership>
+	controls input for playerMovementScript, cameraLookScript, shootingScript.
+Todo: Better shooting( raycast change, weapon swap, (weapon pickup?), weapon aim, weapon spread, dynamic weapon sway ).
+=================
+24-11-18 - Stratos K
+Time: 18h
+Added: AI && Stats Managers v1 made from scratch, with attention to communication of these 2 system and the rest of the AI. Also, implemented major improvements on AI movement and created AI health script.
+Lastly, edited Jimmos' interactiveTargetScript to make it work properly with AI bodyparts (currently, head and body).
+=================
+27-11-18 - Jim P
+Time: ~40h
+Added: 
+>Better Shooting. 
+	- Weapon Aim, now can aim with right click, which changes weapon spread and camera FOV appropriately.
+	- Weapon Spread, depending on mode of firing (hip/aim), aim changes appropriately - currently not dynamic
+		(spread is either x or y, doesn't interpolate based on amount of time firing).
+	- Dynamic weapon sway, gun behavior was modified by adding a sense of weight to the gun.
+	- Weapon Recoil, firing for long periods of time, kicks back the gun and changes the camera angle.
+	- Weapon SFX, created input points for weapon sound effects both gun firing and bullet hitting objects.
+	- Headbob, copy/ pasted older script for some head movement, probably a placeholder!
+>Placeholder SFX.
+	- 2 available SFX for shooting from http://soundbible.com/tags-gun.html.
+	General scripts: CopyMainCameraFOVScript, syncs GunCamera with PlayerCamera
+	Unused scripts: BulletScript
+>Prefabs.
+	- AudioSource_Gunhit_1, is the prefab which handles the hitSFX sound, don't mess with it, just assign proper sound in GunScript.
+	Unused prefabs: Bullet
+Changed: 
+	- Better Crosshairs, now part of the IMGUI system, change pseudo-dynamicly with player actions (currently shooting).
+	- Raycast from gun was changed, now gun fires realistically from hip and aimed position*.
+	* EXPERIMENTAL OPTIONS for gun aim, Gun Script by default has enabled some options where the gun tries to always center itself to the middle
+		of the screen - relative to the object the user is currently aimed at. Feature is not at final state, feels glitchy and basicly weird but
+		it does do what should do at final state!
+	- Rifle model was changed abit.
+Todo: Finish up with Weapon Spread, Headbob, Gunbob, Even better Crosshairs, Fix Gun Aim to not be glitchy.
+================
+03-12-18 - Stratos K
+Time: 20h
+Added: -ZomboAttack
+       -PlayerHealth
+	   -UI location/stamina/health functionality through stats
+	   -Updated stats manager v2
+	   -Edited playerInput/playerMovement to work ''properly'' with player health.
+
+TODOs: Game manager (maybe with state machine(ifNeeded)), UI manager v1, stats manager update v3, Interface <GameEventListener>(); , maybe make AI manager handle all AI updates for more control.
+Also, maybe add triggers for AI on separate layer.
+================
+07-12-18 - Stratos K
+Time: 8h
+Added: - Interface GameEventListener
+       - GameStateMachine & IState (aborted and moved to unused). Need to re-evaluate purpose.
+	   - UI manager v1(and modified Stats manager to work accordingly)
+	   - Game Manager v1 (Very early version, works fine but interfaces not implemented on other systems yet.)
+================
+08-12-2018 Themis M
+Time: n/a
+Changed: 
+	- UI Ammo Bar got scrapped. Ammo counter created instead. Methods have been created to allow for proper display.
+================
+09-12-2018 Themis M
+Time: ~3h
+Added: 
+	- Tab Functionality based on the others' scripts
+Changed:
+	- Tab (Scoreboard) visuals
+================
+11-12-18 Jim P
+Time: ~ 20h
+Added: 
+	- Better main building - build with Probuilder.
+	- New Textured material from https://cc0textures.com/.
+Changed:
+	- Plenty of materials.
+	- Lowered the volume in Main Menu.
+	- The sun
+Bugfix:
+	- MainMenu script, changing the time scale to 1 on scene change.
+TODO: Art Pass 1.
+================
+18-12-18 Jim P
+Time: N/A
+Bugfix:
+	- Some UI on Tab
+	- Some AI on Level
+================
+02-02-19 - Stratos K
+Time: 3h
+Modified: - AI (manager) logic && code.
+          - Re-visited all code related to AI.
+===============
+03-02-19 - Stratos K
+Time: 11h
+Added: - AI_DB/AI_SO/AI_Zombo Experimental scripts with intent to implement scriptable objects for save/load and better workflow on AI design. Ignore for now.
+Modified: - AI_Movement: removed all updates and did some tweaks
+          - AI_Health: minor updates
+		  - AI_Attack: minor updates
+          - AI_Manager: Major overhaul. All updates for each AI are running on AI_Manager so everything is easier to manage/optimize.  
+		  Known issue: If spawn more than 50 ai in total array gets out of index (no problem in actual game atm).
+		  TODO: Interaction with objects / Push AI_Manager for v4 (final) / Work on animations with @themis / Game Manager and game events.
+===============
+05-02-19 - Jim P
+Time: N/A
+Added: Shotgun gun with it's own sound and pre-model.
+Modified: Gun script now has bullets to fire per shot and maximum range variables. Changed the player movement variables a bit.
+Bugfix: Lighting now works way better. Also wall facing the sun has a collider now.			 
+TODO: Air movement/ Better movement, Gun change with scroll wheel.
+===============
+06-02-19 - Stratos K
+Time: N/A
+Modified: Minor AI bugfixes. Re-baked nav mesh. Spawnpoint5 is buggy.
+===============
+07-02-19 - Stratos K
+Time: 7h
+Added: -TriggerEnterEvent script
+       -ZomboSpawnTriggerEvent script
+Modified: - Game Manager v2 (not stable, major changes, much more to come)
+          - GameEventListener interface(not stable)
+		  - Stats Manager (minor changes & a couple new methods)
+Removed:  -Cars
+TODO: Interaction with objects / Push AI_Manager for v4 (final)/ Game Manager v3 (final)/ Objective tracker.
+===============
+12-02-19 - Stratos K
+Time: 6h
+Added: - PlayerInteractSensor script
+       - InteractWith script
+	   - IInteractable interface script
+	   - 3 testing interaction cubes
+Modified: - Player Health && Stats_Manager(added stimpack functionality)
+          - UI_Manager (added Interaction functionality (missing Canvas display))
+		  - InputManager (added Interaction with E (use F if u like))
+TODO: Push AI_Manager for v4 (final)/ Game Manager v3 (final)/ UI display stimpacks/objectives/Interaction key
+================
+02-03-19 - Jim P
+Time: 3h
+Added: Merged everything from new scenes and added animation to zombies + alot other things.
+================
+03-03-19 - Stratos K
+Time: 14h
+Added:  -OurSingletonFriend script
+        -2 new 
+Modified: -AI manager v4(bugfixed it and evolved it to handle wave spawning and difficulty)
+          -UI manager v2(added 2 new text objects and methods and crossfade)
+		  -Game Manager v3(Major overhaul to manage this zombo survival fiesta)
+		  -Lots of minor changes in zombo scripts.
+TODO: Nothing <3
+================
+04-03-19 - Jim P
+Time: Plenty?
+Added: Fixed up scene a bit with help from Olympia,Themis,Jim and Strato also added alot of sounds with Jim K.
+Bugfixes: Plenty.
+TODO: Next update.
+================
+04-03-19 - Jim P
+Time: Is done
+Added: Weapon swap, ammo counter works, final weapon skins, death scene/ win scene from themi, post processing stack.
+Bugfix: Num0 zombie doesn't kill you in one hit (cause it dies before it can).
+TODO: End of Starlog: LogShip Zombo.
+================

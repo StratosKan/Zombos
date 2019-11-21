@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b6ed6d840ee60404c8e2c76d600566d6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shootingVector: {instanceID: 0}
+  - hitVFX: {instanceID: 0}
+  - tracerEffect: {instanceID: 0}
+  - fireSFX: {fileID: 8300000, guid: 7ee214c946a48eb4e938e0224ff61de5, type: 3}
+  - hitSFX: {fileID: 8300000, guid: 3476bbaae7cce23479e2d186c3ee4a2a, type: 3}
+  - hitSFXPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
